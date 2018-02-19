@@ -1,0 +1,12 @@
+.idea/
+target/
+build/
+/bin/
+.settings/
+.project 
+.classpath
+.groovy/suggestions.xdsl
+*.iml
+generated-sources/
+Execution/
+out/

@@ -1,0 +1,38 @@
+<project>
+
+	<property name="enterprise-wsdl" value="${basedir}/src/test/resources/enterprise.wsdl"/>
+	<property name="enterprise-jar" value="${basedir}/target/enterprisews.jar"/>
+	<property name="generated-enterprise-sources" value="${basedir}/target/generated-sources/enterprise-api"/>
+
+    <target name="check-generated-enterprise-sources">
+        <available file="${generated-enterprise-sources}" type="dir" property="generated-enterprise-sources.present"/>
+    </target>
+
+	<target name="generate-enterprise-api" depends="check-generated-enterprise-sources" unless="generated-enterprise-sources.present">
+	    <antcall target="generate-api">
+	    	<param name="input-wsdl" value="${enterprise-wsdl}"/>
+	    	<param name="output-jar" value="${enterprise-jar}"/>
+    		<param name="output-directory" value="${generated-enterprise-sources}"/>
+    	</antcall>
+	</target>
+
+	<target name="generate-api">
+		<delete file="${output-jar}" quiet="true" failonerror="false"/>
+		<delete dir="${output-directory}"/>
+		<exec executable="java">
+			<arg value="-DcompileTarget=1.8"/>
+			<arg value="-classpath"/>
+			<arg value="${compile_classpath}"/>
+			<arg value="com.sforce.ws.tools.wsdlc"/>
+			<arg value="${input-wsdl}"/>
+			<arg value="${output-jar}"/>
+		</exec>
+		<unjar src="${output-jar}" dest="${output-directory}">
+		    <patternset>
+		    	<include name="**/*.java"/>
+		    	<exclude name="**/*.class"/>
+	    	</patternset>
+		</unjar>
+    </target>
+
+</project>
