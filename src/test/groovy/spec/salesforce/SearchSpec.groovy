@@ -15,7 +15,7 @@ class SearchSpec extends FunctionalSpec {
     }
 
     @Unroll
-    def "Search a String in Google and Validate the result"(){
+    def "Search a String in Google and Validate the result via #scenario"(){
         given:"We are on google home page"
         to GoogleHomePage
 

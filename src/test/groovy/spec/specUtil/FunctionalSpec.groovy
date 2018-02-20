@@ -1,6 +1,6 @@
 package spec.specUtil
 
-import com.saucelabs.common.SauceOnDemandSessionIdProvider
+
 import geb.spock.GebReportingSpec
 import org.json.JSONObject
 import org.json.JSONTokener
@@ -9,17 +9,11 @@ import org.slf4j.LoggerFactory
 import spock.lang.Ignore
 
 @Ignore
-class FunctionalSpec extends GebReportingSpec implements SauceOnDemandSessionIdProvider {
+class FunctionalSpec extends GebReportingSpec {
     private static final Logger logger = LoggerFactory.getLogger(FunctionalSpec.class);
 
-    static String sessionId;
     public static HashMap<String, String> GlobalParam = new HashMap<>()
 
-
-    @Override
-    public String getSessionId() {
-        return sessionId;
-    }
 
     Map<String, String> readSetupJSONDataFile(String className) throws Exception {
         logger.debug("Start reading the setup data file");

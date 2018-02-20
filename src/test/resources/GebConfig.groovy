@@ -1,13 +1,8 @@
 import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.firefox.FirefoxDriver
 
 driver = {
-	if(System.properties.get("browser").toString().equalsIgnoreCase("firefox")){
-		new FirefoxDriver()
-	}else {
 		System.setProperty("webdriver.chrome.driver",'src/test/resources/chromedriver/chromedriver.exe')
 		new ChromeDriver()
-	}
 }
 
 waiting {

@@ -14,7 +14,7 @@ public class GoogleHomePage extends Page {
 
     static content={
         edtSearch { $('input',name:"q")}
-        btnSearch(to: GoogleSearchResultPage) { $('input',"value": "Google Search")}
+        btnSearch(to: GoogleSearchResultPage) { $('input', class: "lsb","value": "Google Search")}
 
     }
 
